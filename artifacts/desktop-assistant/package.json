@@ -1,0 +1,126 @@
+{
+  "name": "@workspace/desktop-assistant",
+  "version": "1.0.0",
+  "description": "Cross-platform desktop AI assistant for productivity and accessibility",
+  "main": "out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json",
+    "lint": "eslint src --ext .ts,.tsx --max-warnings 0",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+    "rebuild:native": "electron-rebuild -f -w better-sqlite3",
+    "package": "electron-vite build && electron-builder",
+    "package:win": "electron-vite build && electron-builder --win",
+    "package:mac": "electron-vite build && electron-builder --mac",
+    "package:linux": "electron-vite build && electron-builder --linux",
+    "postinstall": "echo Skipping native rebuild"
+  },
+  "keywords": [
+    "electron",
+    "ai",
+    "assistant",
+    "productivity",
+    "desktop"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@electron-toolkit/preload": "^3.0.1",
+    "@electron-toolkit/utils": "^3.0.0",
+    "axios": "^1.7.9",
+    "better-sqlite3": "^11.9.1",
+    "openai": "^4.87.3"
+  },
+  "devDependencies": {
+    "@anthropic-ai/sdk": "^0.37.0",
+    "@electron-toolkit/tsconfig": "^2.0.0",
+    "@electron/rebuild": "^3.7.1",
+    "@google/generative-ai": "^0.21.0",
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^20.17.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.19.1",
+    "@typescript-eslint/parser": "^8.19.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.21",
+    "clsx": "^2.1.1",
+    "date-fns": "^3.6.0",
+    "electron": "^32.3.3",
+    "electron-builder": "^25.1.8",
+    "electron-vite": "^2.3.0",
+    "eslint": "^8.57.1",
+    "eslint-plugin-react": "^7.37.3",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "framer-motion": "^11.18.2",
+    "highlight.js": "^11.11.1",
+    "lucide-react": "^0.468.0",
+    "postcss": "^8.5.3",
+    "prettier": "^3.5.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-markdown": "^9.0.3",
+    "react-router-dom": "^6.28.2",
+    "rehype-highlight": "^7.0.2",
+    "remark-gfm": "^4.0.0",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss": "^3.4.17",
+    "tesseract.js": "^5.1.1",
+    "typescript": "^5.7.3",
+    "uuid": "^11.0.5",
+    "vite": "^5.4.14",
+    "zustand": "^4.5.4"
+  },
+  "build": {
+    "appId": "com.desktop.assistant",
+    "productName": "AI Assistant",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "out/**/*"
+    ],
+    "asarUnpack": [
+      "**/node_modules/better-sqlite3/**/*",
+      "**/node_modules/tesseract.js-core/**/*",
+      "**/node_modules/tesseract.js/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "icon": "resources/icon.icns"
+    },
+    "win": {
+      "icon": "resources/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "icon": "resources/icon.png",
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Office"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false
+    }
+  }
+}

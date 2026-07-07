@@ -1,0 +1,1 @@
+- [Electron Desktop App](electron-desktop-app.md) — full Electron+React19+Vite app lives at artifacts/desktop-assistant/; cannot preview in Replit, download and run locally.

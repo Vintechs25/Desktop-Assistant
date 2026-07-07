@@ -1,0 +1,53 @@
+You are a senior Electron, Node.js, and pnpm engineer.
+
+Audit this entire project and make it fully cross-platform (Windows, macOS, and Linux) with a focus on Windows compatibility.
+
+Current issues:
+- Windows installation fails because better-sqlite3 requires native compilation.
+- electron-builder postinstall rebuild causes failures.
+- Root package.json contained Linux-only "sh" scripts.
+- Project is a pnpm workspace.
+- Goal is for a fresh clone to work with:
+  pnpm install
+  pnpm dev
+  on Windows without manual fixes.
+
+Tasks:
+
+1. Audit every package.json in the repository.
+2. Remove Linux/macOS-only shell commands.
+3. Replace Unix shell scripts with cross-platform Node.js or pnpm equivalents.
+4. Detect whether better-sqlite3 is actually used.
+   - If unused:
+     - Remove better-sqlite3.
+     - Remove its typings.
+     - Remove all rebuild/postinstall logic.
+     - Replace storage with a lightweight JSON or IndexedDB implementation if necessary.
+   - If used:
+     - Upgrade to the newest compatible version.
+     - Configure electron-builder correctly.
+     - Ensure native rebuild only happens during packaging, not during development.
+5. Remove unnecessary postinstall scripts that block installation.
+6. Verify compatibility between:
+   - Electron
+   - Electron Builder
+   - Electron Vite
+   - Electron Toolkit
+   - React
+   - TypeScript
+7. Update package versions if incompatible.
+8. Ensure pnpm install succeeds on Windows.
+9. Ensure pnpm dev starts without requiring Visual Studio Build Tools unless absolutely necessary.
+10. Remove obsolete or duplicate dependencies.
+11. Replace deprecated packages where appropriate.
+12. Fix all TypeScript configuration issues.
+13. Verify Electron preload, main, and renderer builds.
+14. Fix any workspace configuration problems.
+15. Produce a clean dependency tree with no invalid package versions.
+16. Keep all existing application functionality.
+
+Finally:
+- Explain every change made.
+- Show a diff of modified files.
+- Do not leave placeholder code.
+- Ensure the application builds and runs successfully on a clean Windows machine.

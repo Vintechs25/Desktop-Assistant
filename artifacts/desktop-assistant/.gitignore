@@ -1,0 +1,13 @@
+node_modules/
+out/
+dist/
+.DS_Store
+*.log
+*.local
+.env
+.env.*
+!.env.example
+tesseract/
+*.db
+*.db-shm
+*.db-wal
